@@ -334,6 +334,8 @@ REMOVE Err/Orth ;
 # POS marking
 # ===========
 
+"<қандай>" REMOVE N ;
+
 SELECT N IF
         (0 ("сурет"i))
         (-1 (adj advl) OR Det OR A)
@@ -1273,18 +1275,18 @@ REMOVE Adv IF
 #;
 
 
-## two verbs қай
-#SELECT V-IV IF
-#	(0 ("қай"))
-#	(-1* Dat BARRIER N-LIKE)
-#;
-### Сол жерге қайтып барасың ба?
-#
-#SELECT V-TV IF
-#	(0 ("қай")) 
-#	(-1* Acc BARRIER N-LIKE)
-#;
-### Соны қайтып қыласың?
+# two verbs қайт
+SELECT V-IV IF
+	(0 ("қайт"))
+	(-1* Dat BARRIER N-LIKE)
+;
+## Сол жерге қайтып барасың ба?
+
+SELECT V-TV IF
+	(0 ("қайт"))
+	(-1* Acc BARRIER N-LIKE)
+;
+## Соны қайтып қыласың?
 
 SELECT V-IV IF
 		(0 ("істе"))
@@ -1432,3 +1434,26 @@ SELECT Vaux IF (-1 Participle) ;
 
 SELECT Adv IF (0 Qayda) ;
 
+# қала тұрғындарының санын көбейтті.
+SELECT N IF
+	(0 ("қала"))
+	(1 ("тұрғын"))
+;
+
+# бойынша is almost always a postposition, not n.px3sp.equ
+SELECT Post IF
+	(0 ("бойынша"))
+	(-1 NOMINAL)
+;
+
+# Толқын ұзындығы, керісінше, энергияға кері пропорционал болады.
+# Pretty much always goning to be the adverb reading
+# - especially good for translation
+SELECT Adv IF
+	(0 ("керісінше"))
+;
+
+# The ablative reading of жаңадан doesn't really make sense?
+REMOVE Abl IF
+	(0 ("жаңадан"))
+;
